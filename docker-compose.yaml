@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  ssti-server-get:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ssti-server-get
+    ports:
+      - "5000:5000"
+    environment:
+      FLASK_APP: ssti_server_get/app.py
+      FLASK_RUN_HOST: 0.0.0.0
+      FLASK_RUN_PORT: "5000"
+      FLASK_DEBUG: "1"
+    restart: unless-stopped
+
+  ssti-server-post:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ssti-server-post
+    ports:
+      - "5001:5000"
+    environment:
+      FLASK_APP: ssti_server_post/app.py
+      FLASK_RUN_HOST: 0.0.0.0
+      FLASK_RUN_PORT: "5000"
+      FLASK_DEBUG: "1"
+    restart: unless-stopped
