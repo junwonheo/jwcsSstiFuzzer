@@ -105,11 +105,11 @@ for parsed_key in parsed_parameter.keys():
         if payload_res in response.text:
             success_exploit_count += 1
             with open("result.log", "a", encoding="utf-8") as log_file:
-                log_file.write(f"Payload: {payload} | Success: true\nResponse: {response.text}\n\n")
+                log_file.write(f"Payload: {payload} | Success: true | Parameter: {copy_parsed_parameter}\nResponse: {response.text}\n\n")
         else:
             with open("result.log", "a", encoding="utf-8") as log_file:
-                log_file.write(f"Payload: {payload} | Success: false\nResponse: {response.text}\n\n")
-        
+                log_file.write(f"Payload: {payload} | Success: false | Parameter: {copy_parsed_parameter}\nResponse: {response.text}\n\n")
+
         time.sleep(args.delay)  # 요청 사이에 딜레이 적용
 
     success_rate = (success_exploit_count / try_exploit_count * 100) if try_exploit_count > 0 else 0
