@@ -25,15 +25,14 @@ def index():
         if not name:
             return render_template_string(FORM)
         tpl = f"""
-        <!doctype html>
-        <html>
-        <body>
-        <h2>Hello! Cookie: <script>document.write(document.cookie)</script><br>
-        { name }</h2>
-            <p><a href="/">다시</a></p>
-        </body>
-        </html>
-        """
+    <!doctype html>
+    <html>
+      <body>
+      <h2>Hello! { name }</h2>
+        <p><a href="/">다시</a></p>
+      </body>
+    </html>
+    """
         return render_template_string(tpl, name=name)
 
 if __name__ == '__main__':

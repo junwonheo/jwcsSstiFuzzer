@@ -117,7 +117,7 @@ for parsed_key in parsed_parameter.keys():
         print(f"{Fore.GREEN}[+] Try Parameter: {parsed_key} | Try count: {try_exploit_count} | Success count: {success_exploit_count} | Success rate: {success_rate:.2f}%")
         if(args.shell):
             answer = input(f"{Fore.YELLOW}[*] Do you want to execute a shell command? (Y/n): ").strip().lower()
-            if answer != "y":
+            if answer != "n":
                 while(True):
                     command = input(f"{Fore.YELLOW}[*] Enter the shell command to execute(Quit command: q): {Style.RESET_ALL}").strip()
                     if command == "q":
@@ -126,7 +126,7 @@ for parsed_key in parsed_parameter.keys():
                     print(f"[=] Shell command result: {result}")
         if(args.reverse_shell):
             answer = input(f"{Fore.YELLOW}[*] Do you want to execute a reverse shell? (Y/n): ").strip().lower()
-            if answer != "y":
+            if answer != "n":
                 print("""
     Reverse Shell Command Execution
     Shell upgrade:
